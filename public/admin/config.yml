@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Noctyn/Firefly # 改成你自己的仓库
+  repo: Noctyn/f # 改成你自己的仓库
   branch: main
   base_url: https://firefly-cms-oauth.sshlywlp.workers.dev
 
