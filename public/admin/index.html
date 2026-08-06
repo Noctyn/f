@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 强制相对路径基准为 /admin/，避免访问 /admin（无斜杠）时 config.yml 被解析到根目录导致 404 -->
+    <base href="/admin/" />
     <title>Firefly 内容管理后台</title>
   </head>
   <body>
