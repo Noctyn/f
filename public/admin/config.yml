@@ -1,0 +1,64 @@
+backend:
+  name: github
+  repo: Noctyn/Firefly # 改成你自己的仓库
+  branch: master
+  base_url: https://firefly-cms-oauth.sshlywlp.workers.dev
+
+# 媒体文件（图片）上传后存放的位置，以及在文章里引用时的路径前缀
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "zh_Hans"
+
+collections:
+  - name: "posts"
+    label: "文章"
+    label_singular: "文章"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}" # 用标题自动生成 slug，也可以手动改文件名
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - {
+          label: "发布日期",
+          name: "published",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+        }
+      - { label: "描述", name: "description", widget: "text", required: false }
+      - label: "封面图"
+        name: "image"
+        widget: "string"
+        required: false
+        hint: '填相对路径如 ./cover.jpg，或直接填 "api" 使用随机封面'
+      - { label: "标签", name: "tags", widget: "list", required: false }
+      - { label: "分类", name: "category", widget: "string", required: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "置顶", name: "pinned", widget: "boolean", default: false }
+      - { label: "允许评论", name: "comment", widget: "boolean", default: true }
+      - label: "语言"
+        name: "lang"
+        widget: "select"
+        required: false
+        options: ["zh-CN", "zh-TW", "en", "ja", "ru"]
+        hint: "仅当文章语言与站点默认语言不同时才需要设置"
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "dynamic"
+    label: "动态"
+    label_singular: "动态"
+    folder: "src/content/dynamic"
+    create: true
+    slug: "{{year}}{{month}}{{day}}-{{hour}}{{minute}}{{second}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - {
+          label: "发布时间",
+          name: "published",
+          widget: "datetime",
+          format: "YYYY-MM-DD HH:mm:ss",
+        }
+      - { label: "内容", name: "body", widget: "markdown" }
